@@ -13,6 +13,9 @@ setuptools.setup(
     long_description_content_type="text/markdown",
     url="https://github.com/teamxiv/growbot-python",
     packages=setuptools.find_packages(),
+    install_requires=[
+        'websockets>=7.0'
+    ],
     classifiers=[
         "Programming Language :: Python :: 3",
          "License :: OSI Approved :: MIT License",

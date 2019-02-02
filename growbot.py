@@ -10,7 +10,7 @@ class UnhandledRPCTranslationException(Exception):
 class RPCType(Enum):
     MOVE_IN_DIRECTION = "move"
 
-class Robot(object):
+class Remote(object):
     def __init__(self, id, host="ws://api.growbot.tardis.ed.ac.uk"):
         self.id = id
         self.host = host

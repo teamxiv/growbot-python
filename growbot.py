@@ -2,6 +2,9 @@ import websockets
 import json
 import asyncio
 
+class UnhandledRPCTranslationException(Exception):
+    pass
+
 class Robot(object):
     def __init__(self, id, host="ws://api.growbot.tardis.ed.ac.uk"):
         self.id = id
@@ -32,3 +35,5 @@ class Robot(object):
     def _translate_call(self, type, data, fn):
         if type == "move":
             fn(data)
+        else:
+            raise UnhandledRPCTranslationException()

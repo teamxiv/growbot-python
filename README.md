@@ -4,11 +4,11 @@ The GrowBot Python Library provides convenient access to the GrowBot API from ap
 
 ## Installation
 
-...
+`pip install growbot` or `pipenv install growbot`
 
 ## Usage
 
-...
+See [sample](/sample).
 
 ## Software License
 

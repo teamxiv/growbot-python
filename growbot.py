@@ -1,9 +1,14 @@
+from enum import Enum, unique
 import websockets
 import json
 import asyncio
 
 class UnhandledRPCTranslationException(Exception):
     pass
+
+@unique
+class RPCType(Enum):
+    MOVE_IN_DIRECTION = "move"
 
 class Robot(object):
     def __init__(self, id, host="ws://api.growbot.tardis.ed.ac.uk"):
@@ -16,7 +21,7 @@ class Robot(object):
         async for message in self.ws:
             result = json.loads(message)
 
-            type = result['type']
+            type = RPCType(result['type'])
             data = result['data']
             if type in self.callbacks:
                 self._translate_call(type, data, self.callbacks[type])
@@ -33,7 +38,7 @@ class Robot(object):
     Internal only
     """
     def _translate_call(self, type, data, fn):
-        if type == "move":
+        if type == RPCType.MOVE_IN_DIRECTION:
             fn(data)
         else:
             raise UnhandledRPCTranslationException()

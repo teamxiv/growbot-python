@@ -36,10 +36,10 @@ class Remote(object):
     def add_callback(self, type, fn):
         self.callbacks[type] = fn
 
-    """
-    Internal only
-    """
     def _translate_call(self, type, data, fn):
+        """
+        Internal only
+        """
         if type == RPCType.MOVE_IN_DIRECTION:
             fn(data)
         else:

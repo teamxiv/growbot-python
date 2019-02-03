@@ -20,7 +20,7 @@ class Remote(object):
     def connect(self):
         self.ws = yield from websockets.connect(self.host+"/stream/"+self.id)
         while True:
-            message = yield from ws.recv()
+            message = yield from self.ws.recv()
             result = json.loads(message)
 
             type = RPCType(result['type'])

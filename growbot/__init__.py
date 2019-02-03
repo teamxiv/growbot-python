@@ -16,9 +16,11 @@ class Remote(object):
         self.host = host
         self.callbacks = {}
 
-    async def connect(self):
-        self.ws = await websockets.connect(self.host+"/stream/"+self.id)
-        async for message in self.ws:
+    @asyncio.coroutine
+    def connect(self):
+        self.ws = yield from websockets.connect(self.host+"/stream/"+self.id)
+        while True:
+            message = yield from ws.recv()
             result = json.loads(message)
 
             type = RPCType(result['type'])

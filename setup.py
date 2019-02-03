@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='growbot',
-    version='0.2.3',
+    version='0.2.4',
     author="Team xiv",
     author_email="me@qaisjp.com",
     description="Client library for GrowBot",

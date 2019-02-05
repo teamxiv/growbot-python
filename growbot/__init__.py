@@ -9,6 +9,8 @@ class UnhandledRPCTranslationException(Exception):
 @unique
 class RPCType(Enum):
     MOVE_IN_DIRECTION = "move"
+    DEMO_START = "demo/start"
+    SETTINGS_PATCH = "settings/patch"
 
 class Remote(object):
     def __init__(self, id, host="ws://api.growbot.tardis.ed.ac.uk"):
@@ -42,5 +44,9 @@ class Remote(object):
         """
         if type == RPCType.MOVE_IN_DIRECTION:
             fn(data)
+        elif type == RPCType.DEMO_START:
+            fn(data)
+        elif type == RPCType.SETTINGS_PATCH:
+            fn(data["Key"], data["Value"])
         else:
             raise UnhandledRPCTranslationException()
